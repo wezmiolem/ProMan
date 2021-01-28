@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>ProMan</h1>
+    <div class="accordion">
+    <div class="accordion-item">
+        <div class="accordion-item-header">
+           Pacman
+        </div>
+        <div class="accordion-item-body">
+            <div class="accordion-item-body-content">
+                Pacman test
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <div class="accordion-item-header">
+            Ask mate
+        </div>
+        <div class="accordion-item-body">
+            <div class="accordion-item-body-content">
+                Ask mate test
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <div class="accordion-item-header">
+            Cyber Punk 102
+        </div>
+        <div class="accordion-item-body">
+            <div class="accordion-item-body-content">
+                <div class="small_box1">To do</div>
+                <div class="small_box1">In Problems</div>
+                <div class="small_box1">Status</div>
+                <div class="small_box1">Done</div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <div class="accordion-item-header">
+            Przepis na kurczaka
+        </div>
+        <div class="accordion-item-body">
+            <div class="accordion-item-body-content">
+                Dodaj jeśli znasz.
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <div class="accordion-item-header">
+            Nie wiem co...
+        </div>
+        <div class="accordion-item-body">
+            <div class="accordion-item-body-content">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for("static", filename="js/main.js") }}" defer></script>
+
+{% endblock %}
