@@ -5,7 +5,7 @@
 }
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #34495e;
+  background-color: royalblue;
   color: #fff;
 }
 h1 {
@@ -13,8 +13,18 @@ h1 {
   margin: 2rem 0;
   font-size: 2.5rem;
 }
+.new-board {
+  display: inline-block;
+  float: right;
+  position: relative;
+}
+.dropdown {
+  position: absolute;
+  right: 10px;
+}
 
 .accordion {
+  position: relative;
   width: 90%;
   margin: 2rem auto;
 }
@@ -33,19 +43,19 @@ h1 {
   display: flex;
   align-items: center;
   position: relative;
+}
+
+.accordion-item-header button:after {
+  content: "\21E3";
+  cursor: pointer;
+
+
+}
+.accordion-item-header.active button:after {
+  content: "\21E1";
   cursor: pointer;
 }
-.accordion-item-header::after {
-  /* content: "\002B"; */
-  content: "v";
-  font-size: 2rem;
-  position: absolute;
-  right: 1rem;
-}
-.accordion-item-header.active::after {
-  /* content: "\2212"; */
-  content: "^";
-}
+
 .accordion-item-body {
   max-height: 0;
   overflow: hidden;
@@ -58,12 +68,11 @@ h1 {
   border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
 }
 
-
 .small_box1 {
     float: left;
     width: 25%;
     height: 200px;
-    background-color: rgb(41, 88, 97);
     border: 3px solid black;
+    border-collapse: collapse;
     text-align: center;
 }
