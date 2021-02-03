@@ -13,8 +13,15 @@ function createBoard() {
     let boardNameHolder = document.createElement("span");
     boardNameHolder.innerHTML = boardName;
     boardNameHolder.setAttribute("contenteditable", "true");
-    boardNameHolder.setAttribute("placeholder", "Board Name")
+    boardNameHolder.setAttribute("placeholder", "Board Name");
     newBoardHeader.appendChild(boardNameHolder);
+
+    let addColumnButton = document.createElement('button');
+    addColumnButton.classList.add('add-column');
+    addColumnButton.innerHTML = "Add New Column";
+    newBoardHeader.appendChild(addColumnButton);
+
+
     let accordionButton = document.createElement("button");
     accordionButton.classList.add("dropdown");
     enableAccordion(accordionButton);
