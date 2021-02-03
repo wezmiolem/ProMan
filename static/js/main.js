@@ -1,4 +1,4 @@
-const columnNames = ["New", "In Progress", "Testing", "Done"];
+const columnNames = ["To Do", "In Progress", "Testing", "Done"];
 
 newBoardButton = document.querySelector(".new-board");
 
@@ -13,8 +13,24 @@ function createBoard() {
     let boardNameHolder = document.createElement("span");
     boardNameHolder.innerHTML = boardName;
     boardNameHolder.setAttribute("contenteditable", "true");
-    boardNameHolder.setAttribute("placeholder", "Board Name")
+    boardNameHolder.setAttribute("placeholder", "Board Name");
     newBoardHeader.appendChild(boardNameHolder);
+    let addNoteButton = document.createElement("button");
+    addNoteButton.innerHTML = "Add Note";
+    newBoardHeader.appendChild(addNoteButton);
+        addNoteButton.addEventListener("click", (e) => {
+        let newNote = document.createElement("div");
+        newNote.classList.add("note");
+        newNote.setAttribute("contenteditable", "true");
+        newNote.setAttribute("placeholder", "Note");
+        let firstColumn = e.currentTarget
+            .parentElement
+            .nextElementSibling
+            .firstChild
+            .firstChild;
+        firstColumn.appendChild(newNote);
+        }
+    )
     let accordionButton = document.createElement("button");
     accordionButton.classList.add("dropdown");
     enableAccordion(accordionButton);
@@ -28,11 +44,11 @@ function createBoard() {
         let column = document.createElement("div");
         column.classList.add("column");
         let columnTitle = document.createElement("span")
-        columnTitle.innerHTML = columnName
-        columnTitle.setAttribute("contenteditable", "true")
-        columnTitle.setAttribute("placeholder", columnName)
-        column.appendChild(columnTitle)
-        newBoardBodyContent.appendChild(column)
+        columnTitle.innerHTML = columnName;
+        columnTitle.setAttribute("contenteditable", "true");
+        columnTitle.setAttribute("placeholder", columnName);
+        column.appendChild(columnTitle);
+        newBoardBodyContent.appendChild(column);
     })
     newBoardBody.appendChild(newBoardBodyContent);
     newBoard.appendChild(newBoardBody);

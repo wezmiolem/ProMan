@@ -14,16 +14,19 @@ h1 {
   font-size: 2.5rem;
 }
 .new-board {
+  font-size: 1rem;
   display: inline-block;
   float: right;
   position: relative;
   margin-right: 5%;
+  border-radius: 0.3rem;
 }
 .dropdown {
   position: absolute;
   right: 10px;
   width: 20px;
   height: 35px;
+  border-radius: 0.3rem;
 }
 
 .accordion {
@@ -48,12 +51,12 @@ h1 {
   position: relative;
 }
 
-.accordion-item-header button:after {
+.accordion-item-header button.dropdown:after {
   content: "\21E3";
   cursor: pointer;
 }
 
-.accordion-item-header.active button:after {
+.accordion-item-header.active button.dropdown:after {
   content: "\21E1";
   cursor: pointer;
 }
@@ -82,6 +85,11 @@ h1 {
 }
 .column span {
   font-weight: bold;
+}
+.note {
+  border: 1px solid #8a0516;
+  border-radius: 0.3rem;
+  cursor: move;
 }
 
 [contenteditable=true]:empty:before{
