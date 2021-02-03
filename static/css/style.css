@@ -17,10 +17,13 @@ h1 {
   display: inline-block;
   float: right;
   position: relative;
+  margin-right: 5%;
 }
 .dropdown {
   position: absolute;
   right: 10px;
+  width: 20px;
+  height: 35px;
 }
 
 .accordion {
@@ -48,9 +51,8 @@ h1 {
 .accordion-item-header button:after {
   content: "\21E3";
   cursor: pointer;
-
-
 }
+
 .accordion-item-header.active button:after {
   content: "\21E1";
   cursor: pointer;
@@ -61,6 +63,7 @@ h1 {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
 }
+
 .accordion-item-body-content {
   padding: 1rem;
   line-height: 1.5rem;
@@ -68,11 +71,21 @@ h1 {
   border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
 }
 
-.small_box1 {
+.column {
     float: left;
     width: 25%;
     height: 200px;
-    border: 3px solid black;
+    border: 1px solid;
     border-collapse: collapse;
     text-align: center;
+    border-image: linear-gradient(transparent, #34495e, transparent) 1;
+}
+.column span {
+  font-weight: bold;
+}
+
+[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  pointer-events: none;
+  display: block; /* For Firefox */
 }
