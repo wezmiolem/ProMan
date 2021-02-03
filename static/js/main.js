@@ -1,4 +1,4 @@
-const columnNames = ["To Do", "In Progress", "Testing", "Done"];
+const columnNames = ["New", "In Progress", "Testing", "Done"];
 
 newBoardButton = document.querySelector(".new-board");
 
@@ -31,6 +31,13 @@ function createBoard() {
         firstColumn.appendChild(newNote);
         }
     )
+
+    let addColumnButton = document.createElement('button');
+    addColumnButton.classList.add('add-column');
+    addColumnButton.innerHTML = "Add New Column";
+    newBoardHeader.appendChild(addColumnButton);
+
+
     let accordionButton = document.createElement("button");
     accordionButton.classList.add("dropdown");
     enableAccordion(accordionButton);
