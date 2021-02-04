@@ -36,6 +36,7 @@ function createBoard() {
     addColumnButton.classList.add('add-column');
     addColumnButton.innerHTML = "Add New Column";
     newBoardHeader.appendChild(addColumnButton);
+    createColumn(addColumnButton);
 
 
     let accordionButton = document.createElement("button");
