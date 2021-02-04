@@ -76,3 +76,18 @@ function enableAccordion(accordionButton) {
 
     })
 }
+
+function createColumn(addColumnButton) {
+    addColumnButton.addEventListener("click", () => {
+        let newColumn = prompt("Enter new column name:")
+        newColumn.createElement("div");
+        newColumn.classList.add("column");
+        let columnTitle = document.createElement("span")
+        columnTitle.innerHTML = newColumn;
+        columnTitle.setAttribute("contenteditable", "true");
+        columnTitle.setAttribute("placeholder", newColumn);
+        newColumn.appendChild(columnTitle);
+    })
+}
+
+
