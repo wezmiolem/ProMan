@@ -90,6 +90,10 @@ h1 {
   border: 1px solid #7a1b27;
   border-radius: 0.3rem;
   cursor: move;
+  user-select: none;
+}
+.dragging {
+  opacity: 0.5;
 }
 
 [contenteditable=true]:empty:before{

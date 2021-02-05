@@ -17,20 +17,8 @@ function createBoard() {
     newBoardHeader.appendChild(boardNameHolder);
     let addNoteButton = document.createElement("button");
     addNoteButton.innerHTML = "Add Note";
+    noteCreator(addNoteButton);
     newBoardHeader.appendChild(addNoteButton);
-        addNoteButton.addEventListener("click", (e) => {
-        let newNote = document.createElement("div");
-        newNote.classList.add("note");
-        newNote.setAttribute("contenteditable", "true");
-        newNote.setAttribute("placeholder", "Note");
-        let firstColumn = e.currentTarget
-            .parentElement
-            .nextElementSibling
-            .firstChild
-            .firstChild;
-        firstColumn.appendChild(newNote);
-        }
-    )
     let accordionButton = document.createElement("button");
     accordionButton.classList.add("dropdown");
     enableAccordion(accordionButton);
@@ -40,10 +28,12 @@ function createBoard() {
     newBoardBody.classList.add("accordion-item-body");
     let newBoardBodyContent = document.createElement("div");
     newBoardBodyContent.classList.add("accordion-item-body-content");
+    dragExample(newBoardBodyContent);
     columnNames.forEach(function (columnName) {
         let column = document.createElement("div");
         column.classList.add("column");
-        let columnTitle = document.createElement("span")
+        dropExample(column);
+        let columnTitle = document.createElement("span");
         columnTitle.innerHTML = columnName;
         columnTitle.setAttribute("contenteditable", "true");
         columnTitle.setAttribute("placeholder", columnName);
@@ -68,4 +58,40 @@ function enableAccordion(accordionButton) {
         }
 
     })
+}
+
+function noteCreator(addNoteButton) {
+    addNoteButton.addEventListener("click", (e) => {
+        let newNote = document.createElement("div");
+        newNote.classList.add("note");
+        newNote.setAttribute("draggable", "true");
+        newNote.setAttribute("contenteditable", "true");
+        newNote.setAttribute("placeholder", "Note");
+        let firstColumn = e.currentTarget
+            .parentElement
+            .nextElementSibling
+            .firstChild
+            .firstChild;
+        firstColumn.appendChild(newNote);
+        }
+    )
+}
+
+function dragExample(accordionBody) {
+    accordionBody.addEventListener("dragstart", (e) => {
+        if (e.target && e.target.className === "note") {
+            e.target.classList.add("dragging")
+        }
+    });
+    accordionBody.addEventListener("dragend", (e) => {
+        e.target.classList.remove("dragging")
+    });
+}
+
+function dropExample(column) {
+    column.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        const draggedItem = document.querySelector(".dragging");
+        column.appendChild(draggedItem);
+    });
 }
