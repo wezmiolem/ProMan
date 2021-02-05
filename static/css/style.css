@@ -101,3 +101,9 @@ h1 {
   pointer-events: none;
   display: block; /* For Firefox */
 }
+
+.tholder{
+
+  width: content-box;
+  float: right;
+}

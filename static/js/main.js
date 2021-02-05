@@ -5,6 +5,9 @@ newBoardButton = document.querySelector(".new-board");
 newBoardButton.addEventListener("click", createBoard);
 
 function createBoard() {
+
+    let today = boardCreationDate();
+
     let boardName = prompt("Board Name");
     let newBoard = document.createElement("div");
     newBoard.classList.add("accordion-item");
@@ -19,6 +22,12 @@ function createBoard() {
     addNoteButton.innerHTML = "Add Note";
     noteCreator(addNoteButton);
     newBoardHeader.appendChild(addNoteButton);
+
+    let timeHolder = document.createElement("div");
+    timeHolder.setAttribute("class","tholder");
+    timeHolder.innerHTML = "Created: " + today;
+    newBoardHeader.appendChild(timeHolder);
+
     let accordionButton = document.createElement("button");
     accordionButton.classList.add("dropdown");
     enableAccordion(accordionButton);
@@ -94,4 +103,25 @@ function dropExample(column) {
         const draggedItem = document.querySelector(".dragging");
         column.appendChild(draggedItem);
     });
+}
+
+function boardCreationDate(){
+    let today = new Date();
+
+    let year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    if (month < 10) month = "0"+ month;
+    let day = today.getDate();
+    if (day <10) day = "0" + day;
+
+    let hour = today.getHours();
+    if (hour < 10) hour = "0" + hour;
+    let minute = today.getMinutes();
+    if (minute < 10) minute = "0" + minute;
+    let second = today.getSeconds();
+    if (second < 10) second = "0" + minute;
+
+    let boardCreationTime =  year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
+
+    return boardCreationTime
 }
