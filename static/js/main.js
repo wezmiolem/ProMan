@@ -28,11 +28,11 @@ function createBoard() {
     newBoardBody.classList.add("accordion-item-body");
     let newBoardBodyContent = document.createElement("div");
     newBoardBodyContent.classList.add("accordion-item-body-content");
-    dragExample(newBoardBodyContent);
+    dragEnabler(newBoardBodyContent);
     columnNames.forEach(function (columnName) {
         let column = document.createElement("div");
         column.classList.add("column");
-        dropExample(column);
+        dropEnabler(column);
         let columnTitle = document.createElement("span");
         columnTitle.innerHTML = columnName;
         columnTitle.setAttribute("contenteditable", "true");
@@ -77,7 +77,7 @@ function noteCreator(addNoteButton) {
     )
 }
 
-function dragExample(accordionBody) {
+function dragEnabler(accordionBody) {
     accordionBody.addEventListener("dragstart", (e) => {
         if (e.target && e.target.className === "note") {
             e.target.classList.add("dragging")
@@ -88,10 +88,12 @@ function dragExample(accordionBody) {
     });
 }
 
-function dropExample(column) {
+function dropEnabler(column) {
     column.addEventListener("dragover", (e) => {
         e.preventDefault();
         const draggedItem = document.querySelector(".dragging");
-        column.appendChild(draggedItem);
+        if (column.parentElement.contains(draggedItem.parentElement)) {
+            column.appendChild(draggedItem);
+        }
     });
 }
