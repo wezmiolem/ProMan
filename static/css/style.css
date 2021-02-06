@@ -87,13 +87,23 @@ h1 {
   font-weight: bold;
 }
 .note {
-  border: 1px solid #8a0516;
+  border: 1px solid #7a1b27;
   border-radius: 0.3rem;
   cursor: move;
+  user-select: none;
+}
+.dragging {
+  opacity: 0.5;
 }
 
 [contenteditable=true]:empty:before{
   content: attr(placeholder);
   pointer-events: none;
   display: block; /* For Firefox */
+}
+
+.tholder{
+
+  width: content-box;
+  float: right;
 }
