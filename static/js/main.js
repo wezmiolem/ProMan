@@ -4,6 +4,10 @@ newBoardButton = document.querySelector(".new-board");
 
 newBoardButton.addEventListener("click", createBoard);
 
+ImportBoardButton = document.querySelector(".import-board");
+
+ImportBoardButton.addEventListener("click", importBoard);
+
 function createBoard() {
 
     let today = boardCreationDate();
@@ -13,19 +17,29 @@ function createBoard() {
     newBoard.classList.add("accordion-item");
     let newBoardHeader = document.createElement("div");
     newBoardHeader.classList.add("accordion-item-header");
+
+    let exportButton = document.createElement("button");
+    exportButton.innerHTML = 'export_JSON';
+    exportButton.setAttribute('exJSON','exJSON');
+    exportButton.classList.add('c_button');
+    convertDivToJson(exportButton, newBoard, boardName);
+    newBoardHeader.appendChild(exportButton);
+
+    let addNoteButton = document.createElement("button");
+    addNoteButton.innerHTML = "Add Note";
+    addNoteButton.classList.add('c_button');
+    noteCreator(addNoteButton);
+    newBoardHeader.appendChild(addNoteButton);
+
     let boardNameHolder = document.createElement("span");
     boardNameHolder.innerHTML = boardName;
     boardNameHolder.setAttribute("contenteditable", "true");
     boardNameHolder.setAttribute("placeholder", "Board Name");
     newBoardHeader.appendChild(boardNameHolder);
-    let addNoteButton = document.createElement("button");
-    addNoteButton.innerHTML = "Add Note";
-    noteCreator(addNoteButton);
-    newBoardHeader.appendChild(addNoteButton);
 
     let timeHolder = document.createElement("div");
     timeHolder.setAttribute("class","tholder");
-    timeHolder.innerHTML = "Created: " + today;
+    timeHolder.innerHTML = today;
     newBoardHeader.appendChild(timeHolder);
 
     let accordionButton = document.createElement("button");
@@ -119,9 +133,49 @@ function boardCreationDate(){
     let minute = today.getMinutes();
     if (minute < 10) minute = "0" + minute;
     let second = today.getSeconds();
-    if (second < 10) second = "0" + minute;
+    if (second < 10) second = "0" + second;
 
-    let boardCreationTime =  year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
+    return year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
 
-    return boardCreationTime
+}
+
+function convertDivToJson(exportButton, elem, name){
+    exportButton.addEventListener("click",() => {
+    let jsonObj = {};
+    jsonObj.innerHTML = elem.innerHTML;
+    let jsonString = JSON.stringify(jsonObj);
+    download(name,jsonString)
+    });
+}
+
+function download(filename, text) {
+    let pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
+
+    if (document.createEvent) {
+        let event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+}
+
+function importBoard() {
+    console.log("import-board");
+      fetch(`../static/js/data.json`) /* temporary fixed path to file before create dynamic path*/
+        .then((response) => response.json())
+        .then(function (data){
+            console.log(data)
+          })
+}
+
+function fileSelection(){
+    addEventListener("click", () =>{
+            let input = document.createElement('input');
+            input.type = 'file';
+            input.click()
+          });
 }
